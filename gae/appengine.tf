@@ -1,3 +1,18 @@
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "4.33.0"
+    }
+  }
+}
+
+provider "google" {
+  credentials = file(var.credentials)
+  project = var.project
+}
+
+
 resource "google_app_engine_application" "app" {
   project     = var.project
   location_id = var.location

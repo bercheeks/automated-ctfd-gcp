@@ -15,16 +15,6 @@ provider "google" {
 }
 
 
-# enables desired apis for google project
-resource "google_project_service" "services" {
-  count = length(var.api)
-
-  project = var.project
-  service = var.api[count.index]
-  disable_on_destroy = false
-}
-
-
 resource "google_compute_network" "vpc" {
   name = "ctf-network"
   auto_create_subnetworks = false
