@@ -1,1 +1,17 @@
 A network endpoint group (NEG) specifies a group of backend endpoints for a load balancer. A serverless NEG is a backend that points to a Cloud Run, App Engine, Cloud Functions, or API Gateway service.
+
+
+- Building the Container
+		- CLone the git repo into the shells local dir
+		- Cloud Build
+			- package source code into containers
+			- build the Dockerfile image and push it out to container registry
+			- container registry is googles private hub
+
+			- enable Google CLoud Build
+			*************************
+				- "gcloud services enable cloudbuild.googleleapis.com"
+
+			- "gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/boxofbowties:1.0.0 . "
+				- pushes image to registry
+				- make sure you are choosing the dir with the dockerfile

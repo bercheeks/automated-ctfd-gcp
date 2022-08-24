@@ -1,0 +1,2 @@
+
+"gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/CTFd:1.0.0 . "
