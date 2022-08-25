@@ -19,35 +19,43 @@ resource "google_app_engine_application" "app" {
 }
 
 
-resource "google_app_engine_flexible_app_version" "myapp_v1" {
-  version_id = "v1"
-  project    = var.project
+resource "google_app_engine_flexible_app_version" "flex_app" {
+  version_id = "1"
   service    = "default"
   runtime    = "custom"
 
   deployment {
     container {
-      image = "gcr.io/cloudrun/hello"
+      image = "gcr.io/${var.project}/ctfd:1.0.0"
     }
   }
 
   liveness_check {
-    path = "/"
+    path = "/setup"
   }
 
   readiness_check {
-    path = "/"
+    path = "/setup"
+    app_start_timeout = "1000s"
   }
-  
+
   automatic_scaling {
-    cool_down_period = "120s"
+    cool_down_period    = "120s"
+    max_total_instances = 2
+    min_total_instances = 1
     cpu_utilization {
-      target_utilization = 0.5
+      target_utilization = 0.7
     }
   }
 
-  noop_on_destroy = false
-  delete_service_on_destroy = true
+  resources {
+    cpu       = 2
+    memory_gb = 4
+    disk_gb = 10
+  }
+  network {
+    name = "default"
+  }
 
   depends_on = [google_app_engine_application.app]
 }
