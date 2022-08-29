@@ -3,9 +3,9 @@ variable "project" {}
 variable "credentials" {}
 
 variable "region" {
-  default = "northamerica-northeast2"
+  default = "northamerica-northeast1"
 }
 
 variable "zone" {
-  default = "northamerica-northeast2-a"
+  default = "northamerica-northeast1-a"
 }
