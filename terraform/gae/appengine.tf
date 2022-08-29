@@ -7,6 +7,14 @@ terraform {
   }
 }
 
+
+locals {
+  env_variables = {
+      "DATABASE_URL" = "mysql+pymysql://root:<password>@<internal_ip>/ctfd"
+  }
+}
+
+
 provider "google" {
   credentials = file(var.credentials)
   project = var.project
@@ -46,10 +54,13 @@ resource "google_app_engine_flexible_app_version" "flex_app" {
     }
   }
 
+  env_variables = local.env_variables
+
   liveness_check {
     path = "/setup"
   }
 
+  # change after setup
   readiness_check {
     path = "/setup"
   }
