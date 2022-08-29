@@ -1,4 +1,14 @@
-A network endpoint group (NEG) specifies a group of backend endpoints for a load balancer. A serverless NEG is a backend that points to a Cloud Run, App Engine, Cloud Functions, or API Gateway service.
+
+Using custom domains might add noticeable latency to responses that App Engine sends to your app's users in some regions.
+	App Engine custom domains use a pool of shared IP addresses for all applications. If you want to use an IP address that only maps to your domain then you should instead set up a load balancer with App Engine. This may mitigate a domain fronting issue in which a request to application A in the SNI certificate may be routed to application B in the HTTP Host header.
+
+
+**A network endpoint group (NEG) specifies a group of backend endpoints for a load balancer. A serverless NEG is a backend that points to a Cloud Run, App Engine, Cloud Functions, or API Gateway service.
+	-Serverless NEGs allow you to use Google Cloud serverless apps with external HTTP(S) Load Balancing. After you configure a load balancer with the serverless NEG backend, requests to the load balancer are routed to the serverless app backend.
+
+	
+
+
 
 
 - Building the Container

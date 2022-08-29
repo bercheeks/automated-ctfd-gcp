@@ -19,6 +19,22 @@ resource "google_app_engine_application" "app" {
 }
 
 
+resource "google_project_iam_member" "gae_api" {
+  depends_on = [google_app_engine_application.app]
+  project    = var.project
+  role       = "roles/compute.networkUser"
+  member     = format("serviceAccount:%s@appspot.gserviceaccount.com", var.project)
+}
+
+
+resource "google_project_iam_member" "gae_gcs" {
+  depends_on = [google_app_engine_application.app]
+  project    = var.project
+  role       = "roles/storage.objectViewer"
+  member     = format("serviceAccount:%s@appspot.gserviceaccount.com", var.project)
+}
+
+
 resource "google_app_engine_flexible_app_version" "flex_app" {
   version_id = "1"
   service    = "default"
@@ -36,7 +52,6 @@ resource "google_app_engine_flexible_app_version" "flex_app" {
 
   readiness_check {
     path = "/setup"
-    app_start_timeout = "1000s"
   }
 
   automatic_scaling {
@@ -54,8 +69,12 @@ resource "google_app_engine_flexible_app_version" "flex_app" {
     disk_gb = 10
   }
   network {
-    name = "default"
+    name = "ctf-private"
   }
 
-  depends_on = [google_app_engine_application.app]
+  depends_on = [
+    google_app_engine_application.app,
+    google_project_iam_member.gae_gcs,
+    google_project_iam_member.gae_api
+  ]
 }

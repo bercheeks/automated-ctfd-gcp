@@ -11,6 +11,8 @@ variable "api" {
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
     "appengine.googleapis.com",
-    "appengineflex.googleapis.com"
+    "appengineflex.googleapis.com",
+    "servicenetworking.googleapis.com",
+    "sqladmin.googleapis.com"
      ]
 }
