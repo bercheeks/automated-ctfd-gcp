@@ -22,7 +22,7 @@ resource "google_compute_network" "private_network" {
 
 
 resource "google_compute_subnetwork" "internal" {
-  name = "test-subnet"
+  name = "ctfd-subnet"
   ip_cidr_range = "10.10.10.0/24"
   region = var.region
   network = google_compute_network.private_network.id

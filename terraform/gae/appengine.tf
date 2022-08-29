@@ -70,6 +70,7 @@ resource "google_app_engine_flexible_app_version" "flex_app" {
   }
   network {
     name = "ctf-private"
+    subnetwork = "ctfd-subnet"
   }
 
   depends_on = [
