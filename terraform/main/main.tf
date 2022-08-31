@@ -72,3 +72,20 @@ resource "google_sql_user" "users" {
   instance = google_sql_database_instance.instance.name
   password = var.db_password
 }
+
+
+resource "google_redis_instance" "cache" {
+  name           = "private-cache"
+  tier           = "STANDARD_HA"
+  memory_size_gb = 1
+
+  location_id = var.zone
+
+  authorized_network = google_compute_network.private_network.id
+  connect_mode       = "PRIVATE_SERVICE_ACCESS"
+
+  redis_version     = "REDIS_4_0"
+  display_name      = "CTFD Instance"
+
+  depends_on = [google_service_networking_connection.private_vpc_connection]
+}

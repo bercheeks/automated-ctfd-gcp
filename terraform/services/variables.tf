@@ -13,6 +13,7 @@ variable "api" {
     "appengine.googleapis.com",
     "appengineflex.googleapis.com",
     "servicenetworking.googleapis.com",
-    "sqladmin.googleapis.com"
+    "sqladmin.googleapis.com",
+    "redis.googleapis.com"
      ]
 }
