@@ -64,12 +64,12 @@ resource "google_app_engine_flexible_app_version" "flex_app" {
 
   # change after setup to '/'
   liveness_check {
-    path = "/setup"
+    path = "/themes/core/static/css/main.dev.css"
   }
 
   # change after setup to '/'
   readiness_check {
-    path = "/setup"
+    path = "/themes/core/static/css/main.dev.css"
   }
 
   automatic_scaling {

@@ -1,0 +1,9 @@
+Steps to enable interoperability mode in order to get the S3 compatible key
+
+1. Go to Cloud Storage Settings page in the Google Cloud Platform Console
+
+2. Under Settings, select Interoperability
+
+3. If you have not set up interoperability before, click Enable interoperability access.
+
+4. Click Create a new key
