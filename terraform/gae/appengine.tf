@@ -17,6 +17,7 @@ locals {
       "AWS_SECRET_ACCESS_KEY" = "[redacted]" # need from settings
       "AWS_S3_BUCKET" = google_storage_bucket.ctfd_upload_bucket.name
       "AWS_S3_ENDPOINT_URL" = "https://storage.googleapis.com"
+      "REVERSE_PROXY" = "2,1,0,0,0" # for cloudflare proxy and app engine NEG load balancer
   }
 }
 
