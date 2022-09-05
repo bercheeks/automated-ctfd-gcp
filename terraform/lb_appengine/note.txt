@@ -1,9 +1,35 @@
 Steps to enable interoperability mode in order to get the S3 compatible key
 
-1. Go to Cloud Storage Settings page in the Google Cloud Platform Console
+    1. Go to Cloud Storage Settings page in the Google Cloud Platform Console
 
-2. Under Settings, select Interoperability
+    2. Under Settings, select Interoperability
 
-3. If you have not set up interoperability before, click Enable interoperability access.
+    3. If you have not set up interoperability before, click Enable interoperability access.
 
-4. Click Create a new key
+    4. Click Create a new key
+
+
+Steps to associate domain name to Load Balancer's IP address
+
+    1. Set up an A record for your domain registar
+
+    2. In GCP, go to Network Services --> Load Balancing --> Certificates -->
+    Create SSL Certificate
+
+        i) Select Google-Managed Certificate
+
+        ii)  Enter the domain that you want to associate with your load Balancer
+
+    3. Create a Load Balancer
+    
+        i)  Choose HTTP(S) Load Balancing
+
+        ii) Make sure to choose Classic Load Balancer
+
+        iii) For frontend config, for Protocol 'HTTPS', for IP Address 'ctfd-lb-address', select
+        the Certificate created from step 2
+
+        iiii) Redirect HTTP to HTTPS enabled
+
+    4. Wait approx. 20 mins for the Certificate to be Activated by Google Cloud and the Certificate
+    Authority
