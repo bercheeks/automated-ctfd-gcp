@@ -63,12 +63,12 @@ resource "google_app_engine_flexible_app_version" "flex_app" {
 
   env_variables = local.env_variables
 
-  # change after setup to '/'
+
   liveness_check {
     path = "/themes/core/static/css/main.dev.css"
   }
 
-  # change after setup to '/'
+
   readiness_check {
     path = "/themes/core/static/css/main.dev.css"
   }
@@ -121,6 +121,15 @@ resource "google_compute_global_address" "default" {
 }
 
 
+resource "google_compute_managed_ssl_certificate" "ssl" {
+  name = "ssl-cert"
+
+  managed {
+    domains = ["[redacted]"] # enter your domain name here
+  }
+}
+
+
 resource "google_compute_region_network_endpoint_group" "appengine_neg" {
   name                  = "appengine-neg"
   network_endpoint_type = "SERVERLESS"
@@ -141,3 +150,49 @@ resource "google_compute_backend_service" "default" {
     group = google_compute_region_network_endpoint_group.appengine_neg.id
   }
 }
+
+
+resource "google_compute_target_https_proxy" "default" {
+  name             = "ctfd-proxy"
+  url_map = google_compute_url_map.default.id
+  ssl_certificates = [google_compute_managed_ssl_certificate.ssl.id]
+}
+
+
+resource "google_compute_url_map" "default" {
+  name        = "ctfd-https-lb"
+  default_service = google_compute_backend_service.default.id
+}
+
+
+resource "google_compute_global_forwarding_rule" "default" {
+  name = "ssl-proxy-xlb-forwarding-rule"
+  ip_protocol = "TCP"
+  load_balancing_scheme = "EXTERNAL"
+  port_range = "443"
+  target = google_compute_target_https_proxy.default.id
+  ip_address = google_compute_global_address.default.id
+}
+
+# uncomment if http redirect isnt working
+# resource "google_compute_url_map" "http-redirect" {
+#   name = "http-redirect"
+
+#   default_url_redirect {
+#     redirect_response_code = "MOVED_PERMANENTLY_DEFAULT"  // 301 redirect
+#     strip_query            = false
+#     https_redirect         = true  // this is the magic
+#   }
+# }
+
+# resource "google_compute_target_http_proxy" "http-redirect" {
+#   name    = "http-redirect"
+#   url_map = google_compute_url_map.http-redirect.self_link
+# }
+
+# resource "google_compute_global_forwarding_rule" "http-redirect" {
+#   name       = "http-redirect"
+#   target     = google_compute_target_http_proxy.http-redirect.self_link
+#   ip_address = google_compute_global_address.default.address
+#   port_range = "80"
+# }
