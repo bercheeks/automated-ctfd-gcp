@@ -2,7 +2,9 @@
 
 This repo is meant for anybody trying to host a CTF on a cloud platform. This repo makes use
 Google Cloud Platform with Terraform to eliminate any manual configuration needed for deploying
-CTFd onto the Cloud.
+CTFd onto the Cloud. I personally used this automated repo to host the 2023 ISSessions CTF hosted 
+by Sheridan College Students.
+
 
 ## Installation
 
@@ -21,27 +23,22 @@ git clone https://github.com/bercheeks/terra-gcp-template.git
 
 ## Usage
 
-```python
-import foobar
+Head over to the Terraform directory to initialize and configure all Google Cloud required services.
 
-# returns 'words'
-foobar.pluralize('word')
 
-# returns 'geese'
-foobar.pluralize('goose')
+## Credits
 
-# returns 'phenomenon'
-foobar.singularize('phenomena')
-```
+This repo would not be possible without the help of all the previous Infrastructure Developers
+part of ISSessions along with the current challenge devs who are building out the coolest CTF challenges ever!
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Special thanks to Samuel C. for personally helping me out with understanding Google Cloud.
+Check his repo out for [App-Engine](https://github.com/DownUnderCTF/ctfd-appengine) configuration,
+which I used to create the terraform script needed for CTFd.
 
-Please make sure to update tests as appropriate.
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
-This repo is meant for complete project initialization for people trying to bootstrap CTFd infrastructure on Google Cloud (GCP).
+
+
+
 
 Make sure to have a service account key within the project directory so "credentials" variable can call it. If you are using Basic roles for the service account, grant "Owner" as App Engine relies on the Owner role to create GAE applications.
 	- Also add Storage Object Viewer Perm
