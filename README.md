@@ -31,9 +31,8 @@ Head over to the Terraform directory to initialize and configure all Google Clou
 This repo would not be possible without the help of all the previous Infrastructure Developers
 part of ISSessions along with the current challenge devs who are building out the coolest CTF challenges ever!
 
-Special thanks to Samuel C. for personally helping me out with understanding Google Cloud.
-Check his repo out for [App-Engine](https://github.com/DownUnderCTF/ctfd-appengine) configuration,
-which I used to create the terraform script needed for CTFd.
+Kudos to Samuel C. (developer part of DownUnderCTF) for helping me out with creating the configuration needed for CTFd's App Enginge.
+Check out his repo for [App-Engine](https://github.com/DownUnderCTF/ctfd-appengine) configuration.
 
 
 
