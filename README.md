@@ -9,6 +9,7 @@ CTFd onto the Cloud.
 This repo assumes you are using linux!**
 
 Software Needed:
+
 This repo
 ```bash
 git clone https://github.com/bercheeks/terra-gcp-template.git
