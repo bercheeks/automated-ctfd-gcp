@@ -1,9 +1,8 @@
-## Web
+## Web Instructions
 Command to create ip: 
 ```bash
 gcloud compute addresses create ingress-webapps --global
 ```
-"gcloud compute addresses create ingress-webapps --global"
 
 1. apply the managed cert
 2. apply the service with deployment
