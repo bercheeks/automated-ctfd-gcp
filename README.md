@@ -1,9 +1,6 @@
 # CTFd Automated Deployment for Google Cloud
 
-This repo is meant for anybody trying to host a CTF on a cloud platform. This repo makes use
-Google Cloud Platform with Terraform to eliminate any manual configuration needed for deploying
-CTFd onto the Cloud. I personally used this automated repo to host the 2023 ISSessions CTF hosted 
-by Sheridan College Students.
+This repository is intended for anyone looking to host a CTF on a cloud platform. The repository utilizes Google Cloud Platform with Terraform to automate the deployment of CTFd to the cloud, eliminating the need for manual configuration. I personally used this automated repository to host the 2023 ISSessions CTF, which was hosted by Sheridan College students.
 
 
 ## Installation
@@ -25,28 +22,15 @@ git clone https://github.com/bercheeks/terra-gcp-template.git
 
 Head over to the Terraform directory to initialize and configure all Google Cloud required services.
 
+When setting up a project directory, ensure that a service account key is present so that the "credentials" variable can access it. If Basic roles are being used for the service account, it is important to grant the "Owner" role as App Engine depends on it for creating GAE applications. In addition, it is recommended to add the Storage Object Viewer permission and the Flexible Environment App Engine permission. By following these steps, you can ensure that your project directory is properly configured and ready to use.
+
+Terraform Start:
+	1. ```bash terraform init```
+	2. ```bash terraform apply```
+
+Note: App Engine applications cannot be deleted once they're created; you have to delete the entire project to delete the application. Terraform will report the application has been successfully deleted; this is a limitation of Terraform, and will go away in the future. Terraform is not able to delete App Engine applications.
+
 
 ## Credits
 
-This repo would not be possible without the help of all the previous Infrastructure Developers
-part of ISSessions along with the current challenge devs who are building out the coolest CTF challenges ever!
-
-Kudos to Samuel C. (developer part of DownUnderCTF) for helping me out with creating the configuration needed for CTFd's App Enginge.
-Check out his repo for [App-Engine](https://github.com/DownUnderCTF/ctfd-appengine) configuration.
-
-
-
-
-
-
-Make sure to have a service account key within the project directory so "credentials" variable can call it. If you are using Basic roles for the service account, grant "Owner" as App Engine relies on the Owner role to create GAE applications.
-	- Also add Storage Object Viewer Perm
-	- + Flexible Env App Engine Perm
-
-Make sure to use the init terra module first, as it purely initializes the services used in this project
-
-Terraform Start:
-	1. terraform init
-	2. terraform apply
-
-Note: App Engine applications cannot be deleted once they're created; you have to delete the entire project to delete the application. Terraform will report the application has been successfully deleted; this is a limitation of Terraform, and will go away in the future. Terraform is not able to delete App Engine applications.
+The assistance of previous Infrastructure Developers who were part of ISSessions has been crucial in making this repository possible, along with the ongoing efforts of the current challenge developers who are creating the most exciting CTF challenges to date.
