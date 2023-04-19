@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forgefuture
+  labels:
+    app: forgefuture
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forgefuture
+  template:
+    metadata:
+      labels:
+        app: forgefuture
+    spec:
+      containers:
+      - name: forgefuture
+        image: gcr.io/ctf-368821/challenges/finalforge:1.0.0 
+        ports:
+        - containerPort: 5000
+        resources:
+            requests:
+              cpu: 100m

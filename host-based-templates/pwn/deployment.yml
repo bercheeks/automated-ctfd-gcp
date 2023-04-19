@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: videorental-final
+  labels:
+    app: videorental-final
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: videorental-final
+  template:
+    metadata:
+      labels:
+        app: videorental-final
+    spec:
+      containers:
+      - name: videorental-final
+        image:  gcr.io/ctf-368821/challenges/videorental-final:1.0.0
+        ports:
+        - containerPort: 6666
+        resources:
+            requests:
+              cpu: 100m
+        securityContext:
+          privileged: true
+          readOnlyRootFilesystem: true

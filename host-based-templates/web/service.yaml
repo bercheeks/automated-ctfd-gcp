@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: forgefuture
+  labels:
+    app: forgefuture
+spec:
+  type: NodePort
+  ports:
+    - name: http-port-forgefuture
+      port: 5000
+      targetPort: 5000
+  selector:
+    app: forgefuture
