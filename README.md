@@ -25,11 +25,12 @@ Head over to the Terraform directory to initialize and configure all Google Clou
 When setting up a project directory, ensure that a service account key is present so that the "credentials" variable can access it. If Basic roles are being used for the service account, it is important to grant the "Owner" role as App Engine depends on it for creating GAE applications. In addition, it is recommended to add the Storage Object Viewer permission and the Flexible Environment App Engine permission. By following these steps, you can ensure that your project directory is properly configured and ready to use.
 
 Terraform Start:
-	1. ```bash 
+
+	```bash 
 	terraform init
 	```
 
-	2. ```bash
+	```bash
 	terraform apply
 	```
 
