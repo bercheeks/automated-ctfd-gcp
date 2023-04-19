@@ -25,9 +25,13 @@ Head over to the Terraform directory to initialize and configure all Google Clou
 When setting up a project directory, ensure that a service account key is present so that the "credentials" variable can access it. If Basic roles are being used for the service account, it is important to grant the "Owner" role as App Engine depends on it for creating GAE applications. In addition, it is recommended to add the Storage Object Viewer permission and the Flexible Environment App Engine permission. By following these steps, you can ensure that your project directory is properly configured and ready to use.
 
 Terraform Start:
-	1. ```bash terraform init```
-	
-	2. ```bash terraform apply```
+	1. ```bash 
+	terraform init
+	```
+
+	2. ```bash
+	terraform apply
+	```
 
 Note: App Engine applications cannot be deleted once they're created; you have to delete the entire project to delete the application. Terraform will report the application has been successfully deleted; this is a limitation of Terraform, and will go away in the future. Terraform is not able to delete App Engine applications.
 
