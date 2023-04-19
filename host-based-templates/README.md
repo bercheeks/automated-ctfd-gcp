@@ -1,3 +1,9 @@
+## Push Docker Image to Google Cloud:
+Ensure that you have a Dockerfile in the directory from which you are running this command.
+```bash
+gcloud builds submit --tag gcr.io/${CHALLENGE_CATEGORY}/${CHALLENGE_NAME}:1.0.0 .
+```
+
 ## Web Instructions
 Command to create ip: 
 ```bash
